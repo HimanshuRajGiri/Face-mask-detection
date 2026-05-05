@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 😷 Face Mask Detection using Custom CNN
 
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
@@ -56,3 +57,7 @@ streamlit run app.py
 - GitHub: [@HimanshuRajGiri](https://github.com/HimanshuRajGiri)
 
 *Developed as a Minor Project. If you find this project helpful, don't forget to leave a ⭐ on the repository!*
+=======
+# Face-mask-detection
+A deep learning project using CNN and OpenCV to detect face masks in real-time with Streamlit deployment.
+>>>>>>> 448876911db25cb0466a16d6a1a9fe3eedd5be93
