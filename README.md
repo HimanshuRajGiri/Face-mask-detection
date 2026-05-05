@@ -1,77 +1,58 @@
-# Mask v/s No-Mask Face Detection using Machine Learning Models
+# 😷 Face Mask Detection using Custom CNN
 
-Face recognition is a fascinating application in the field of image recognition. However, face images with masks create hindrance .The goal of this project is to classify images of people into two classes: Mask and No-Mask based upon whether they wear a mask in the image or not. However, there is a variety in the shape, design, orientation and appearance of masks which makes it challenging. The mask vs. no mask recognition can help in applications like face-recognition based entry systems, detection of suspicious faces through security cameras, etc.
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![PyTorch](https://img.shields.io/badge/PyTorch-Deep%20Learning-orange.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-Web%20App-red.svg)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green.svg)
 
-![Screenshot (1288)](https://user-images.githubusercontent.com/54277039/174299591-304cc9af-90fd-44db-bf78-4e20166dddab.png)
+## 📌 Overview
+This project is an advanced **Face Mask Detection System** built using **Deep Learning**. Originally based on traditional Machine Learning algorithms (like SVM and MLP which capped at ~71% accuracy), this project has been fully upgraded with a custom **Convolutional Neural Network (CNN)** implemented in PyTorch to achieve an outstanding **96.22% Accuracy**.
 
-## About
+To make it user-friendly, a beautiful, interactive **Streamlit Web Application** has been integrated. It features **OpenCV-based Face Detection (Haar Cascades)** to automatically detect and crop faces from uploaded photos before passing them to the CNN model for prediction.
 
-![Screenshot (587)](https://user-images.githubusercontent.com/54277039/139411055-e4d385d0-97ba-43d9-b0b7-835e78e17648.png)
+## 🚀 Key Features
+- **Custom CNN Architecture**: A lightweight 3-block CNN optimized for fast CPU inference.
+- **High Accuracy**: Reached **96.22%** Test Accuracy by handling dataset imbalances.
+- **OpenCV Integration**: Automatically detects and crops faces from full images to prevent background interference.
+- **Interactive Web App**: A modern, glassmorphism-styled Streamlit UI for seamless drag-and-drop image testing.
 
-We have made our custom dataset consisting of 10,470 images with equal proportions of masked and no-masked people and segregated the same from `self-built-masked-face-recognition-dataset`. Since the masked data was less, image augmentation was incorporated to create an equal proportion of both the classes. We used various classification algorithms and compared their results in this report. We applied the same on the group photos given in the `Real-World-Masked-Face-Dataset-master` and detected the human faces using inbuilt-Cascade classifier (Adaboost based model). The dataset has been split into train and test with test size of 0.5
+## 📂 Project Structure
+- `app.py`: The main Streamlit web application.
+- `train_cnn.py`: The script used to define and train the PyTorch CNN model.
+- `mask_cnn_model.pth`: The trained model weights (The Brain).
+- `Mask vs No Mask Face Detection.ipynb`: The legacy baseline notebook showing old traditional ML models.
+- `requirements.txt`: Project dependencies.
 
-## Dependencies
+## ⚙️ Installation & Setup
 
-1. OpenCV
-2. Scikit-Learn
-3. Numpy
-4. Pandas
-5. Scipy
-6. Skimage
-7. Matplotlib
-8. Seaborn
-9. Os
+**1. Clone the repository:**
+```bash
+git clone https://github.com/HimanshuRajGiri/Mask_model.git
+cd Mask_model
+```
 
-## Models
+**2. Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
 
-1. `Multilayer Perceptron` :- MLP is a feedforward Neural Network which uses backpropagation to update weights and improve the results. MLP was applied on the training dataset with custom architecture (first hidden layer consisted of 100 neurons, second hidden layer consisted of 50 neurons and third with 25 neurons, accompanied by ReLU activation function with tolerance value of 10e(-6)).
+**3. Run the Web Application:**
+```bash
+streamlit run app.py
+```
+*This will open the web app automatically in your default browser!*
 
-2. `Random Forest Classifier` :- Random Forest Classifiers use boosting ensemble methods to train upon various decision trees and produce aggregated results.It is one of the most used machine learning algorithms. It was applied on the training dataset with n_estimators as 100.
+## 📊 Results Comparison
+| Model Approach | Test Accuracy | Inference Type |
+|----------------|---------------|----------------|
+| Legacy ML (SVM / MLP) | ~71% | Traditional ML |
+| **Custom CNN (Our Model)** | **96.2%** | **Deep Learning** |
 
-3. `Decision tree classifier` :- A Decision Tree is a simple representation for classifying examples. It is a Supervised Machine Learning where the data is continuously split according to a certain parameter. It was applied on the training dataset with default configuration.
+---
 
-4. `Logistic Regression` :- Logistic Regression model is widely used for binary classification and hence is well suited for classification into mask vs no mask with parameter n_jobs= -1 so that all the processors in CPU are used to speed up the code.
+## 👨‍💻 Developer
 
-5. `Gaussian Naive Bayes` :- GNB is a type of Naive Bayes classifier that assumes that the distribution of data is gaussian and classifies data based on this assumption. It was applied on the training dataset with default configuration.
+**Himanshu Raj Giri**
+- GitHub: [@HimanshuRajGiri](https://github.com/HimanshuRajGiri)
 
-6. `KNN (k - nearest neighbors)` :- KNN are supervised algorithms which classify on the basis of distance from similar points.Here k is the number of nearest neighbors to be considered in the majority voting process with parameters n_neighbor=3 and n_jobs= -1 so that all the processors in CPU are used to speed up the code.
-
-7. `Support Vector Machine` :- In SVM , data points are plotted into n-dimensional graphs which are then classified by drawing hyperplanes. The Gaussian Radial Basis Function was used as the kernel and `c` was taken as 30.
-
-## Results
-
-The models implemented were evaluated using techniques like :- 
-
-1. Classification Report (Precision , Recall , F1-Score and Support) and Confusion Matrix , Accuracy Score and Cross-Validation Scores.
-
-![Screenshot (588)](https://user-images.githubusercontent.com/54277039/139411075-e834ccde-347f-4a97-a06c-c3cef4ef54cd.png)
-
-2. ROC plots
-
-![Screenshot (1285)](https://user-images.githubusercontent.com/54277039/174298233-f1a96353-3d88-406e-986e-915236c3559e.png)
-![Screenshot (1286)](https://user-images.githubusercontent.com/54277039/174298239-c9697117-19d0-4eb6-b077-64cfa73fd75b.png)
-![Screenshot (1287)](https://user-images.githubusercontent.com/54277039/174298249-db81d861-560a-4232-99e4-0e61bb315728.png)
-
-## Implementation on Group Photos and Conclusion
-
-![Screenshot (589)](https://user-images.githubusercontent.com/54277039/139411091-67302bc3-aafc-4303-8ab9-57807ded75b5.png)
-
-The table shows that all classifiers had accuracies in the range of `60-70%`. Out of all the models, we saw that `SVM and MLP` outperformed others with the accuracy of `71%` because in MLP, every weight associated with perceptrons captures every feature of an image and in SVM, we saw that gaussian performed better than others (linear, polynomial and sigmoid) because it normalises the data distribution which enabled us to deal with outliers. The Gaussian Naive Bayes did not perform well when compared to the others since in naive bayes, it is assumed that all the features are independent which was not the case.
-
-## References
-
-1. https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html
-2. https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html
-3. https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html
-4. https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
-5. https://scikit-learn.org/stable/modules/generated/sklearn.naive_bayes.GaussianNB.html
-6. https://scikit-learn.org/stable/modules/generated/sklearn.svm.SVC.html
-7. https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html
-8. https://www.pyimagesearch.com/2021/04/12/opencv-haar-cascades/
-9. https://scikit-image.org/docs/dev/api/skimage.util.html#skimage.util.random_noise
-10. https://towardsdatascience.com/data-augmentation-techniques-in-python-f216ef5eed69
-
-# Contributors
-
-1. [Soumya Vaish](https://github.com/Saumya0206)
-2. [Kwanit Gupta (me)](https://github.com/kwanit1142)
+*Developed as a Minor Project. If you find this project helpful, don't forget to leave a ⭐ on the repository!*
